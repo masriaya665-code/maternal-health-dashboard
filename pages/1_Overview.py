@@ -11,7 +11,7 @@ def load_who():
 
 who = load_who()
 
-st.title("Global Maternal Mortality — Overview")
+st.title("Global Maternal Mortality - Overview")
 st.markdown("Key statistics from WHO data (1985–2023)")
 
 latest = who[who["Year"] == who["Year"].max()]

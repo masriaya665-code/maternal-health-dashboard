@@ -24,10 +24,10 @@ if check_password():
     st.markdown("""
     Welcome. Use the sidebar to navigate between sections of the dashboard.
 
-    - **Overview** — Global KPIs and key statistics
-    - **Global Trends** — Maternal mortality trends over time
-    - **Geographic Map** — World map of maternal mortality by country
-    - **Regional Analysis** — Breakdown by WHO region and income group
-    - **Patient Explorer** — Explore individual patient clinical data
-    - **Risk Predictor** — Predict maternal risk level using a machine learning model
+    - **Overview** - Global KPIs and key statistics
+    - **Global Trends** - Maternal mortality trends over time
+    - **Geographic Map** - World map of maternal mortality by country
+    - **Regional Analysis** - Breakdown by WHO region and income group
+    - **Patient Explorer** - Explore individual patient clinical data
+    - **Risk Predictor** - Predict maternal risk level using a machine learning model
     """)
