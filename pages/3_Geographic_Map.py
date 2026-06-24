@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-st.set_page_config(page_title="Geographic Map", page_icon="🗺️", layout="wide")
+st.set_page_config(page_title="Geographic Map", layout="wide")
 
 BASE = "."
 
@@ -12,18 +12,15 @@ def load_who():
 
 who = load_who()
 
-st.title("🗺️ Global Maternal Mortality Map")
+st.title("Global Maternal Mortality Map")
 st.markdown("Explore how maternal mortality is distributed across the world.")
 
-# --- YEAR SLIDER ---
 min_year = int(who["Year"].min())
 max_year = int(who["Year"].max())
 selected_year = st.slider("Select Year", min_year, max_year, max_year)
 
-# --- FILTER DATA ---
 filtered = who[who["Year"] == selected_year]
 
-# --- CHOROPLETH MAP ---
 fig = px.choropleth(
     filtered,
     locations="Country ISO 3 code",
@@ -39,8 +36,7 @@ st.plotly_chart(fig, use_container_width=True)
 
 st.markdown("---")
 
-# --- DATA TABLE BELOW MAP ---
-st.subheader(f"📋 Data Table — {selected_year}")
+st.subheader(f"Data Table — {selected_year}")
 table = filtered[["Country", "WHO region", "World bank income group", "Value Numeric"]].copy()
 table.columns = ["Country", "WHO Region", "Income Group", "MMR (per 100k)"]
 table = table.sort_values("MMR (per 100k)", ascending=False).reset_index(drop=True)
