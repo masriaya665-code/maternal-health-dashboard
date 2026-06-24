@@ -7,11 +7,11 @@ from sklearn.metrics import classification_report
 
 st.set_page_config(page_title="Risk Predictor", page_icon="🤖", layout="wide")
 
-BASE = "/content/drive/My Drive/maternal_health_dashboard"
+BASE = "."
 
 @st.cache_data
 def load_and_train():
-    df = pd.read_csv(BASE + "/data/maternal_risk.csv.csv")
+    df = pd.read_csv(BASE + "/data/maternal_risk.csv")
     
     # Encode target
     label_map = {"low risk": 0, "mid risk": 1, "high risk": 2}

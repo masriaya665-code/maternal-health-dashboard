@@ -4,11 +4,11 @@ import plotly.express as px
 
 st.set_page_config(page_title="Patient Explorer", page_icon="🧑‍⚕️", layout="wide")
 
-BASE = "/content/drive/My Drive/maternal_health_dashboard"
+BASE = "."
 
 @st.cache_data
 def load_risk():
-    return pd.read_csv(BASE + "/data/maternal_risk.csv.csv")
+    return pd.read_csv(BASE + "/data/maternal_risk.csv")
 
 df = load_risk()
 

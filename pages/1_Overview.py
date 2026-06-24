@@ -3,11 +3,11 @@ import pandas as pd
 
 st.set_page_config(page_title="Overview", page_icon="📊", layout="wide")
 
-BASE = "/content/drive/My Drive/maternal_health_dashboard"
+BASE = "."
 
 @st.cache_data
 def load_who():
-    return pd.read_excel(BASE + "/data/who_mmr.xlsx.xlsx", sheet_name="Data")
+    return pd.read_excel(BASE + "/data/who_mmr.xlsx", sheet_name="Data")
 
 who = load_who()
 
