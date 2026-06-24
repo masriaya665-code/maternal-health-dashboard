@@ -1,0 +1,53 @@
+import streamlit as st
+import pandas as pd
+import plotly.express as px
+
+st.set_page_config(page_title="Regional Analysis", page_icon="📦", layout="wide")
+
+BASE = "/content/drive/My Drive/maternal_health_dashboard"
+
+@st.cache_data
+def load_who():
+    return pd.read_excel(BASE + "/data/who_mmr.xlsx.xlsx", sheet_name="Data")
+
+who = load_who()
+
+st.title("📦 Regional & Income Group Analysis")
+
+# --- YEAR FILTER ---
+selected_year = st.slider("Select Year", int(who["Year"].min()), int(who["Year"].max()), 2023)
+filtered = who[who["Year"] == selected_year]
+
+st.markdown("---")
+
+# --- AVG MMR BY WHO REGION ---
+st.subheader("🌐 Average MMR by WHO Region")
+region_avg = filtered.groupby("WHO region")["Value Numeric"].mean().reset_index()
+region_avg.columns = ["WHO Region", "Average MMR"]
+region_avg = region_avg.sort_values("Average MMR", ascending=False)
+fig1 = px.bar(region_avg, x="WHO Region", y="Average MMR",
+              color="Average MMR", color_continuous_scale="Reds",
+              title=f"Average MMR by WHO Region ({selected_year})")
+fig1.update_layout(yaxis_title="MMR (per 100,000 live births)")
+st.plotly_chart(fig1, use_container_width=True)
+
+st.markdown("---")
+
+# --- BOX PLOT BY INCOME GROUP ---
+st.subheader("💰 MMR Distribution by Income Group")
+fig2 = px.box(filtered, x="World bank income group", y="Value Numeric",
+              color="World bank income group",
+              title=f"MMR Spread by Income Group ({selected_year})",
+              labels={"Value Numeric": "MMR (per 100,000 live births)",
+                      "World bank income group": "Income Group"})
+st.plotly_chart(fig2, use_container_width=True)
+
+st.markdown("---")
+
+# --- REGION TREND OVER TIME ---
+st.subheader("📈 MMR Trend by WHO Region Over Time")
+region_trend = who.groupby(["Year", "WHO region"])["Value Numeric"].mean().reset_index()
+fig3 = px.line(region_trend, x="Year", y="Value Numeric", color="WHO region",
+               title="MMR Trend by WHO Region (1985–2023)")
+fig3.update_layout(yaxis_title="MMR (per 100,000 live births)")
+st.plotly_chart(fig3, use_container_width=True)
