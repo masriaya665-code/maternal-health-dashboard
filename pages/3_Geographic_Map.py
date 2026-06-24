@@ -36,7 +36,7 @@ st.plotly_chart(fig, use_container_width=True)
 
 st.markdown("---")
 
-st.subheader(f"Data Table — {selected_year}")
+st.subheader(f"Data Table - {selected_year}")
 table = filtered[["Country", "WHO region", "World bank income group", "Value Numeric"]].copy()
 table.columns = ["Country", "WHO Region", "Income Group", "MMR (per 100k)"]
 table = table.sort_values("MMR (per 100k)", ascending=False).reset_index(drop=True)
