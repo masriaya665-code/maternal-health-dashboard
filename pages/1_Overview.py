@@ -45,7 +45,7 @@ with col_left:
     top10 = latest.nlargest(10, "Value Numeric")[["Country", "Value Numeric"]].copy()
     top10.columns = ["Country", "MMR"]
     top10 = top10.sort_values("MMR")
-    fig1 = px.bar(top10, x="MMR", y="Country", orientation="h", color="MMR", color_continuous_scale="Reds", labels={"MMR": "MMR (per 100k)"})
+    fig1 = px.bar(top10, x="MMR", y="Country", orientation="h", color="MMR", color_continuous_scale="RdPu", labels={"MMR": "MMR (per 100k)"})
     fig1.update_layout(showlegend=False, coloraxis_showscale=False, margin=dict(l=0,r=0,t=10,b=0))
     st.plotly_chart(fig1, use_container_width=True)
 with col_right:
@@ -53,7 +53,7 @@ with col_right:
     income = latest.groupby("World bank income group")["Value Numeric"].mean().reset_index()
     income.columns = ["Income Group", "Average MMR"]
     income = income.sort_values("Average MMR", ascending=False)
-    fig2 = px.bar(income, x="Income Group", y="Average MMR", color="Average MMR", color_continuous_scale="Reds", labels={"Average MMR": "Avg MMR (per 100k)"})
+    fig2 = px.bar(income, x="Income Group", y="Average MMR", color="Average MMR", color_continuous_scale="RdPu", labels={"Average MMR": "Avg MMR (per 100k)"})
     fig2.update_layout(showlegend=False, coloraxis_showscale=False, margin=dict(l=0,r=0,t=10,b=0))
     st.plotly_chart(fig2, use_container_width=True)
 
@@ -61,7 +61,7 @@ st.markdown("---")
 st.subheader("Global Trend (1985-2023)")
 global_trend = who.groupby("Year")["Value Numeric"].mean().reset_index()
 global_trend.columns = ["Year", "Average MMR"]
-fig3 = px.area(global_trend, x="Year", y="Average MMR", color_discrete_sequence=["#c0392b"], labels={"Average MMR": "Avg MMR (per 100,000 live births)"})
+fig3 = px.area(global_trend, x="Year", y="Average MMR", color_discrete_sequence=["#f48fb1"], labels={"Average MMR": "Avg MMR (per 100,000 live births)"})
 fig3.update_traces(fillcolor="rgba(192,57,43,0.15)")
 fig3.update_layout(margin=dict(l=0,r=0,t=10,b=0))
 st.plotly_chart(fig3, use_container_width=True)

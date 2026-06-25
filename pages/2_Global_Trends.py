@@ -15,7 +15,7 @@ st.title("Maternal Mortality Trends Over Time")
 st.subheader("Global Average MMR (1985-2023)")
 global_trend = who.groupby("Year")["Value Numeric"].mean().reset_index()
 global_trend.columns = ["Year", "Average MMR"]
-fig1 = px.line(global_trend, x="Year", y="Average MMR", title="Global Average Maternal Mortality Ratio", markers=True, color_discrete_sequence=["#c0392b"])
+fig1 = px.line(global_trend, x="Year", y="Average MMR", title="Global Average Maternal Mortality Ratio", markers=True, color_discrete_sequence=["#f48fb1"])
 fig1.update_layout(yaxis_title="MMR (per 100,000 live births)")
 st.plotly_chart(fig1, use_container_width=True)
 st.markdown("---")

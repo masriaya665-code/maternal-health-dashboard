@@ -18,7 +18,7 @@ filtered = who[who["Year"] == selected_year]
 
 fig = px.choropleth(filtered, locations="Country ISO 3 code", color="Value Numeric",
     hover_name="Country", hover_data={"Value Numeric": True, "WHO region": True, "World bank income group": True},
-    color_continuous_scale="Reds", title=f"Maternal Mortality Ratio by Country ({selected_year})",
+    color_continuous_scale="RdPu", title=f"Maternal Mortality Ratio by Country ({selected_year})",
     labels={"Value Numeric": "MMR (per 100k live births)"})
 fig.update_layout(geo=dict(showframe=False, showcoastlines=True))
 st.plotly_chart(fig, use_container_width=True)
