@@ -55,7 +55,7 @@ if st.button("Predict Risk Level"):
         st.error(f"Predicted Risk Level: **{result}**")
     prob_df = pd.DataFrame({"Risk Level": ["Low Risk", "Mid Risk", "High Risk"], "Probability": [proba[0], proba[1], proba[2]]})
     fig = px.bar(prob_df, x="Risk Level", y="Probability", color="Risk Level",
-        color_discrete_map={"Low Risk": "#2dc653", "Mid Risk": "#f4a261", "High Risk": "#c0392b"},
+        color_discrete_map={"Low Risk": "#80cbc4", "Mid Risk": "#ffe082", "High Risk": "#f48fb1"},
         title="Prediction Confidence by Risk Level")
     fig.update_layout(yaxis_tickformat=".0%", yaxis_title="Probability")
     st.plotly_chart(fig, use_container_width=True)
@@ -63,5 +63,5 @@ if st.button("Predict Risk Level"):
 st.markdown("---")
 st.subheader("Feature Importance")
 st.markdown("The chart below shows which clinical indicators have the most influence on the model's predictions.")
-fig2 = px.bar(importances, x="Importance", y="Feature", orientation="h", color="Importance", color_continuous_scale="Reds", title="Relative Importance of Clinical Features")
+fig2 = px.bar(importances, x="Importance", y="Feature", orientation="h", color="Importance", color_continuous_scale="RdPu", title="Relative Importance of Clinical Features")
 st.plotly_chart(fig2, use_container_width=True)
