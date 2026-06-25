@@ -5,7 +5,6 @@ st.set_page_config(page_title="Maternal Health Dashboard", layout="wide")
 def check_password():
     if "authenticated" not in st.session_state:
         st.session_state.authenticated = False
-
     if not st.session_state.authenticated:
         st.title("Maternal Health Analytics Dashboard")
         st.markdown("This dashboard is restricted. Please enter the password to continue.")
