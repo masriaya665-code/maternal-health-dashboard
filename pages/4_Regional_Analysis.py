@@ -38,9 +38,10 @@ st.plotly_chart(fig2, use_container_width=True)
 st.markdown("---")
 
 st.subheader("MMR Trend by WHO Region Over Time")
-pink_sequence = ["#e91e8c", "#f48fb1", "#c2185b", "#2dc653", "#f4a261", "#c0392b"]
+pink_sequence = ["#e91e8c", "#f48fb1", "#c2185b", "#fce4ec", "#ad1457", "#f8bbd0"]
 region_trend = who.groupby(["Year", "WHO region"])["Value Numeric"].mean().reset_index()
 fig3 = px.line(region_trend, x="Year", y="Value Numeric", color="WHO region",
-               title="MMR Trend by WHO Region (1985-2023)"),color_discrete_sequence=pink_colors,
+               color_discrete_sequence=pink_sequence,
+               title="MMR Trend by WHO Region (1985-2023)")
 fig3.update_layout(yaxis_title="MMR (per 100,000 live births)")
 st.plotly_chart(fig3, use_container_width=True)
