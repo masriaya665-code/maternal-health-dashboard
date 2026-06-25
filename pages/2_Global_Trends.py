@@ -17,7 +17,7 @@ global_trend = who.groupby("Year")["Value Numeric"].mean().reset_index()
 global_trend.columns = ["Year", "Average MMR"]
 fig1 = px.line(global_trend, x="Year", y="Average MMR",
                title="Global Average Maternal Mortality Ratio",
-               markers=True, color_discrete_sequence=["#f48fb1"])
+               markers=True, color_discrete_sequence=["#e91e8c"])
 fig1.update_layout(yaxis_title="MMR (per 100,000 live births)")
 st.plotly_chart(fig1, use_container_width=True)
 st.markdown("---")
@@ -27,10 +27,9 @@ countries = sorted(who["Country"].unique().tolist())
 selected = st.multiselect("Select countries to compare:", countries,
                            default=["Lebanon", "France", "Afghanistan", "Nigeria"])
 if selected:
-    pink_sequence = ["#e91e8c", "#f48fb1", "#c2185b", "#fce4ec"]
     filtered = who[who["Country"].isin(selected)]
     fig2 = px.line(filtered, x="Year", y="Value Numeric", color="Country",
-                   color_discrete_sequence=pink_sequence,
+                   color_discrete_sequence=["#e91e8c","#9c27b0","#2196f3","#00bcd4","#4caf50","#ff9800"],
                    title="Maternal Mortality Ratio by Country", markers=True)
     fig2.update_layout(yaxis_title="MMR (per 100,000 live births)")
     st.plotly_chart(fig2, use_container_width=True)
@@ -39,10 +38,9 @@ else:
 st.markdown("---")
 
 st.subheader("Trend by World Bank Income Group")
-pink_sequence = ["#e91e8c", "#f48fb1", "#c2185b", "#fce4ec"]
 income_trend = who.groupby(["Year", "World bank income group"])["Value Numeric"].mean().reset_index()
 fig3 = px.line(income_trend, x="Year", y="Value Numeric", color="World bank income group",
-               color_discrete_sequence=pink_sequence,
+               color_discrete_sequence=["#e91e8c","#9c27b0","#2196f3","#00bcd4"],
                title="Maternal Mortality Ratio by Income Group", markers=False)
 fig3.update_layout(yaxis_title="MMR (per 100,000 live births)")
 st.plotly_chart(fig3, use_container_width=True)
