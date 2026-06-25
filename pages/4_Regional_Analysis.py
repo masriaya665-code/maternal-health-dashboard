@@ -19,7 +19,7 @@ st.subheader("Average MMR by WHO Region")
 region_avg = filtered.groupby("WHO region")["Value Numeric"].mean().reset_index()
 region_avg.columns = ["WHO Region", "Average MMR"]
 region_avg = region_avg.sort_values("Average MMR", ascending=False)
-fig1 = px.bar(region_avg, x="WHO Region", y="Average MMR", color="Average MMR", color_continuous_scale="Reds", title=f"Average MMR by WHO Region ({selected_year})")
+fig1 = px.bar(region_avg, x="WHO Region", y="Average MMR", color="Average MMR", color_continuous_scale="RdPu", title=f"Average MMR by WHO Region ({selected_year})")
 fig1.update_layout(yaxis_title="MMR (per 100,000 live births)")
 st.plotly_chart(fig1, use_container_width=True)
 st.markdown("---")

@@ -23,14 +23,14 @@ st.markdown("---")
 
 st.subheader("Age Distribution by Risk Level")
 fig1 = px.histogram(filtered, x="Age", color="RiskLevel",
-    color_discrete_map={"low risk": "#2dc653", "mid risk": "#f4a261", "high risk": "#c0392b"},
+    color_discrete_map={"low risk": "#80cbc4", "mid risk": "#ffe082", "high risk": "#f48fb1"},
     barmode="overlay", nbins=30, title="Age Distribution by Risk Level")
 st.plotly_chart(fig1, use_container_width=True)
 st.markdown("---")
 
 st.subheader("Blood Pressure vs Blood Sugar")
 fig2 = px.scatter(filtered, x="SystolicBP", y="BS", color="RiskLevel",
-    color_discrete_map={"low risk": "#2dc653", "mid risk": "#f4a261", "high risk": "#c0392b"},
+    color_discrete_map={"low risk": "#80cbc4", "mid risk": "#ffe082", "high risk": "#f48fb1"},
     hover_data=["Age", "HeartRate", "BodyTemp"], title="Systolic Blood Pressure vs Blood Sugar by Risk Level")
 fig2.update_layout(xaxis_title="Systolic BP", yaxis_title="Blood Sugar (BS)")
 st.plotly_chart(fig2, use_container_width=True)
@@ -38,7 +38,7 @@ st.markdown("---")
 
 st.subheader("Risk Level Distribution")
 fig3 = px.pie(filtered, names="RiskLevel", color="RiskLevel",
-    color_discrete_map={"low risk": "#2dc653", "mid risk": "#f4a261", "high risk": "#c0392b"},
+    color_discrete_map={"low risk": "#80cbc4", "mid risk": "#ffe082", "high risk": "#f48fb1"},
     title="Proportion of Risk Levels")
 st.plotly_chart(fig3, use_container_width=True)
 st.markdown("---")
