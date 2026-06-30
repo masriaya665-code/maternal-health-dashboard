@@ -4,6 +4,7 @@ import plotly.express as px
 
 st.set_page_config(page_title="Regional Analysis", layout="wide")
 BASE = "."
+SEQ = ["#2dc653", "#f4a261", "#c0392b", "#5b8dd9", "#a259c4", "#f7c59f"]
 
 @st.cache_data
 def load_who():
@@ -20,8 +21,7 @@ region_avg = filtered.groupby("WHO region")["Value Numeric"].mean().reset_index(
 region_avg.columns = ["WHO Region", "Average MMR"]
 region_avg = region_avg.sort_values("Average MMR", ascending=False)
 fig1 = px.bar(region_avg, x="WHO Region", y="Average MMR",
-              color="WHO Region",
-              color_discrete_sequence=["#e91e8c","#9c27b0","#2196f3","#00bcd4","#4caf50","#ff9800"],
+              color="WHO Region", color_discrete_sequence=SEQ,
               title=f"Average MMR by WHO Region ({selected_year})")
 fig1.update_layout(yaxis_title="MMR (per 100,000 live births)", showlegend=False)
 st.plotly_chart(fig1, use_container_width=True)
@@ -29,8 +29,7 @@ st.markdown("---")
 
 st.subheader("MMR Distribution by Income Group")
 fig2 = px.box(filtered, x="World bank income group", y="Value Numeric",
-              color="World bank income group",
-              color_discrete_sequence=["#e91e8c","#9c27b0","#2196f3","#00bcd4"],
+              color="World bank income group", color_discrete_sequence=SEQ,
               title=f"MMR Distribution by Income Group ({selected_year})",
               labels={"Value Numeric": "MMR (per 100,000 live births)",
                       "World bank income group": "Income Group"})
@@ -40,7 +39,7 @@ st.markdown("---")
 st.subheader("MMR Trend by WHO Region Over Time")
 region_trend = who.groupby(["Year", "WHO region"])["Value Numeric"].mean().reset_index()
 fig3 = px.line(region_trend, x="Year", y="Value Numeric", color="WHO region",
-               color_discrete_sequence=["#e91e8c","#9c27b0","#2196f3","#00bcd4","#4caf50","#ff9800"],
+               color_discrete_sequence=SEQ,
                title="MMR Trend by WHO Region (1985-2023)")
 fig3.update_layout(yaxis_title="MMR (per 100,000 live births)")
 st.plotly_chart(fig3, use_container_width=True)
